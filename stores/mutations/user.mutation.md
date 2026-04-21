@@ -91,7 +91,7 @@ Used by:
 - [action] user/login
 - [action] user/switchUser
 - [action] user/login_sso
-- [subscribe] pages/login.\*.js
+- [web_js] pages/login.\*.js
 
 ## user/USER_SET_AUTH_INFO
 
@@ -223,4 +223,4 @@ Used by:
 - [action] user/fetchUserInfo
 - [action] user/fetchUserStats
 - [action] user/fetchProdi
-- [commit] layouts/main.\*.js
+- [web_js] layouts/main.\*.js

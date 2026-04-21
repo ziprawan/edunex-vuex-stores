@@ -18,7 +18,7 @@ Rough explanation:
 
 Used by:
 
-- [dispatch] app.\*.js
+- [web_js] app.\*.js
 - If not exists, remove "auth" from local storage
 
 ## user/checkUserInfo (async)
@@ -29,7 +29,7 @@ Rough explanation:
 
 Used by:
 
-- [dispatch] app.\*.js
+- [web_js] app.\*.js
 
 ## user/fetchStudents (async)
 
@@ -50,7 +50,7 @@ Rough explanation:
 
 Used by: **none**
 
-## user/fetchLecturer
+## user/fetchLecturer (async)
 
 Accepts 1 argument:
 
@@ -67,7 +67,7 @@ Used by:
 - [dispath] exam/start.\*.js
 - [dispath] survey/list-lecturer.\*.js
 
-## user/fetchAccessToken
+## user/fetchAccessToken (async)
 
 Rough explanation:
 
@@ -75,7 +75,7 @@ Rough explanation:
 
 Used by: **none**
 
-## user/login
+## user/login (async)
 
 Accepts 1 argument:
 
@@ -118,7 +118,7 @@ Used by:
 - [dispath] webhook-sso.\*.js
 - [dispath] pages/login.\*.js
 
-## user/switchUser
+## user/switchUser (async)
 
 Accepts 1 argument:
 
@@ -156,7 +156,7 @@ Used by:
 
 - [dispath] main.\*.js
 
-## user/login_sso
+## user/login_sso (async)
 
 Accepts 1 argument:
 
@@ -191,10 +191,10 @@ Rough explanation:
 
 Used by:
 
-- [dispatch] webhook-sso.\*.js
-- [dispatch] pages/login.\*.js
+- [web_js] webhook-sso.\*.js
+- [web_js] pages/login.\*.js
 
-## user/logout
+## user/logout (async)
 
 Rough explanation:
 
@@ -214,9 +214,9 @@ Rough explanation:
 
 Used by:
 
-- [dispatch] app.\*.js
+- [web_js] app.\*.js
 
-## user/fetchUserInfo
+## user/fetchUserInfo (async)
 
 Rough explanation
 
@@ -254,3 +254,179 @@ Rough explanation
       | undefined;
   }
   ```
+
+Used by:
+
+- [action] user/checkUserInfo
+- [action] user/switchUser
+
+## user/fetchUserStats (async)
+
+Accepts 2 argument(s):
+
+- arg_0: unknown
+- arg_1:
+  ```typescript
+  interface IArg1 {
+    userId: string;
+  }
+  ```
+
+Rough explanation:
+
+- Fetch GET /stats/user/`{{userId}}`
+- Let `response` is a JSON parsed of the fetch response
+- Call mutation user/USER_INFO_SET with data:
+  ```typescript
+  { ...state.userInfo, stats: response.data };
+  ```
+
+Used by:
+
+- [web_js] settings/profile-lecturer.\*.js
+- [web_js] settings/profile-student.\*.js
+
+## user/fetchUniversities (async)
+
+Accepts 1 argument:
+
+- arg_0: `string | number`
+
+Rough explanation:
+
+- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt?per-page=10&q=`{{arg_0}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
+- Let `response` is a JSON parsed of the fetch response
+- Return mapped array of `response.data`, which is:
+
+  ```typescript
+  {
+    name: data.name,
+    propinsi: data.propinsi.nama,
+    code: data.id
+  }
+  ```
+
+  where `data` is each element in the `response.data` array
+
+- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+
+Used by:
+
+- [web_js] course/public.\*.js
+
+## user/fetchProdi (async)
+
+Accepts 1 argument:
+
+- arg_0: `{ q: string; university: string }`
+
+Rough explanation:
+
+- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/`{{arg_0.university}}`/prodi??per-page=10&q=`{{arg_0.q}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
+- Let `response` is a JSON parsed of the fetch response
+- Return mapped array of `response.data`, which is:
+
+  ```typescript
+  {
+    name: `${data.jenjang_didik.nama}-${data.nama}`,
+    code: data.id
+  }
+  ```
+
+  where `data` is each element in the `response.data` array
+
+- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+
+Used by:
+
+- [web_js] course/public.\*.js
+
+## user/fetchStudent (async)
+
+Accepts 1 argument:
+
+- arg_0: `{ nim: string; university: string; prodi: string; }`
+
+Rough explanation:
+
+- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/`{{arg_0.university}}`/prodi/`{{arg_0.prodi}}`/mahasiswa/`{{arg_0.nim}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
+- Let `response` is a JSON parsed of the fetch response
+- Return mapped array of `response.data`, which is:
+
+  ```typescript
+  {
+    name: data.nama,
+  }
+  ```
+
+  where `data` is each element in the `response.data` array
+
+- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+
+Used by:
+
+- [web_js] course/public.\*.js
+
+## user/fetchLecturerDikti (async)
+
+Accepts 1 argument:
+
+- arg_0: `{ nidn: string }`
+
+Rough explanation:
+
+- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/dosen?nidn=`{{arg_0.nidn}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
+- Let `response` is a JSON parsed of the fetch response
+- Return mapped array of `response.data`, which is:
+
+  ```typescript
+  {
+    name: data.nama,
+  }
+  ```
+
+  where `data` is each element in the `response.data` array
+
+- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+
+Used by:
+
+- [web_js] course/public.\*.js
+
+## user/postForm (async)
+
+Accepts 1 argument:
+
+- arg_0:
+  ```typescript
+  interface IArg0 {
+    courseId: string;
+    campus: unknown;
+    roles: unknown;
+    code: unknown;
+    name: unknown;
+    province: unknown;
+    is_verify: unknown;
+    ip_address: unknown;
+  }
+  ```
+
+Rough explanation:
+
+- Fetch POST /public/view/course/`{{arg_0.courseId}}` with body: `arg_0`
+- Let `response` is a JSON parsed of the fetch response
+- Return mapped array of `response.data`, which is:
+
+  ```typescript
+  {
+    name: data.nama,
+  }
+  ```
+
+  where `data` is each element in the `response.data` array
+
+- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+
+Used by:
+
+- [web_js] course/public.\*.js
