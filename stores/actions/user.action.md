@@ -99,7 +99,7 @@ Rough explanation:
   }
   ```
 - Let `response` is the JSON response
-- Let `var_1` contains this object:
+- Let `var_0` contains this object:
 
   ```typescript
     {
@@ -110,8 +110,8 @@ Rough explanation:
     }
   ```
 
-- Call mutation user/USER_SET_AUTH_INFO with arg_0: `var_1`
-- Set into local storage with key "auth" and value `var_1`
+- Call mutation user/USER_SET_AUTH_INFO with arg_0: `var_0`
+- Set into local storage with key "auth" and value `var_0`
 
 Used by:
 
@@ -133,8 +133,8 @@ Accepts 1 argument:
 Rough explanation:
 
 - Call mutation user/USER_LOGIN_REQUEST
-- Let `var_1` is a base64 encoded of `arg_0.id`
-- Fetch GET "https://sso-edunex.itb.ac.id/switch/ `{{var_1}}`"
+- Let `var_0` is a base64 encoded of `arg_0.id`
+- Fetch GET "https://sso-edunex.itb.ac.id/switch/ `{{var_0}}`"
 - Let `response` is the JSON response
 - Let `var_1` contains this object:
 
@@ -175,7 +175,7 @@ Accepts 1 argument:
 Rough explanation:
 
 - Call mutation user/USER_LOGIN_REQUEST
-- Let `var_1` contains this object:
+- Let `var_0` contains this object:
   ```typescript
   {
     accessToken: arg_0.access_token,
@@ -185,8 +185,8 @@ Rough explanation:
     verified: !0,
   };
   ```
-- Call mutation user/USER_SET_AUTH_INFO with data: `var_1`
-- Set into local storage with key "auth" and value `var_1`
+- Call mutation user/USER_SET_AUTH_INFO with data: `var_0`
+- Set into local storage with key "auth" and value `var_0`
 - Call mutation user/USER_LOGIN_SUCCESS
 
 Used by:
