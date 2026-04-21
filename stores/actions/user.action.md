@@ -45,7 +45,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Fetch GET /course/students?filter[user_id][is]=`{{arg_0.userId}}`&filter[period_id][in]=`{{arg_0.periods}}`
+- Fetch GET "/course/students?filter[user_id][is]=`{{arg_0.userId}}`&filter[period_id][in]=`{{arg_0.periods}}`"
 - Internal generic parser
 
 Used by: **none**
@@ -58,7 +58,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Fetch GET /course/lecturers/`{{arg_0}}`
+- Fetch GET "/course/lecturers/`{{arg_0}}`"
 - Internal generic parser
 
 Used by:
@@ -91,7 +91,7 @@ Accepts 1 argument:
 Rough explanation:
 
 - Call mutation user/USER_LOGIN_REQUEST
-- Fetch POST /user/auth/login with body:
+- Fetch POST "/user/auth/login" with body:
   ```typescript
   {
     username: arg_0.username,
@@ -134,7 +134,7 @@ Rough explanation:
 
 - Call mutation user/USER_LOGIN_REQUEST
 - Let `var_1` is a base64 encoded of `arg_0.id`
-- Fetch GET https://sso-edunex.itb.ac.id/switch/`{{var_1}}`
+- Fetch GET "https://sso-edunex.itb.ac.id/switch/ `{{var_1}}`"
 - Let `response` is the JSON response
 - Let `var_1` contains this object:
 
@@ -221,7 +221,7 @@ Used by:
 Rough explanation
 
 - Call mutation user/USER_INFO_FETCH_REQUEST
-- Fetch GET /login/me
+- Fetch GET "/login/me"
 - Dispatch action lptk/fetchLptkById
 - If the task throw error, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 - If success, call mutation user/USER_INFO_SET with data:
@@ -274,7 +274,7 @@ Accepts 2 argument(s):
 
 Rough explanation:
 
-- Fetch GET /stats/user/`{{userId}}`
+- Fetch GET "/stats/user/`{{userId}}`"
 - Let `response` is a JSON parsed of the fetch response
 - Call mutation user/USER_INFO_SET with data:
   ```typescript
@@ -294,7 +294,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt?per-page=10&q=`{{arg_0}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
+- Make a GET request to "https://api.kemdikbud.go.id:8243/pddikti/1.1/pt?per-page=10&q= `{{arg_0}}`" with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
 - Let `response` is a JSON parsed of the fetch response
 - Return mapped array of `response.data`, which is:
 
@@ -322,7 +322,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/`{{arg_0.university}}`/prodi??per-page=10&q=`{{arg_0.q}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
+- Make a GET request to "https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/ `{{arg_0.university}}`/prodi??per-page=10&q=`{{arg_0.q}}`" with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }`
 - Let `response` is a JSON parsed of the fetch response
 - Return mapped array of `response.data`, which is:
 
@@ -349,7 +349,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/`{{arg_0.university}}`/prodi/`{{arg_0.prodi}}`/mahasiswa/`{{arg_0.nim}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
+- Make a GET request to "https://api.kemdikbud.go.id:8243/pddikti/1.1/pt/ `{{arg_0.university}}`/prodi/`{{arg_0.prodi}}`/mahasiswa/`{{arg_0.nim}}`" with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
 - Let `response` is a JSON parsed of the fetch response
 - Return mapped array of `response.data`, which is:
 
@@ -375,7 +375,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Make a GET request to https://api.kemdikbud.go.id:8243/pddikti/1.1/dosen?nidn=`{{arg_0.nidn}}` with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
+- Make a GET request to "https://api.kemdikbud.go.id:8243/pddikti/1.1/dosen?nidn= `{{arg_0.nidn}}`" with header `{ Authorization: "Bearer 43a045c5-9c9e-3d1c-b75e-becb239fc8b5" }` and timeout `5e3`
 - Let `response` is a JSON parsed of the fetch response
 - Return mapped array of `response.data`, which is:
 
@@ -413,7 +413,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Fetch POST /public/view/course/`{{arg_0.courseId}}` with body: `arg_0`
+- Fetch POST "/public/view/course/`{{arg_0.courseId}}`" with body: `arg_0`
 - Let `response` is a JSON parsed of the fetch response
 - Return mapped array of `response.data`, which is:
 
