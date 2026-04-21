@@ -90,7 +90,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Call mutation user/USER_LOGIN_REQUEST
+- Commit mutation user/USER_LOGIN_REQUEST
 - Fetch POST "/user/auth/login" with body:
   ```typescript
   {
@@ -110,7 +110,7 @@ Rough explanation:
     }
   ```
 
-- Call mutation user/USER_SET_AUTH_INFO with arg_0: `var_0`
+- Commit mutation user/USER_SET_AUTH_INFO with arg_0: `var_0`
 - Set into local storage with key "auth" and value `var_0`
 
 Used by:
@@ -132,7 +132,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Call mutation user/USER_LOGIN_REQUEST
+- Commit mutation user/USER_LOGIN_REQUEST
 - Let `var_0` is a base64 encoded of `arg_0.id`
 - Fetch GET "https://sso-edunex.itb.ac.id/switch/ `{{var_0}}`"
 - Let `response` is the JSON response
@@ -147,10 +147,10 @@ Rough explanation:
     }
   ```
 
-- Call mutation user/USER_SET_AUTH_INFO with arg_0: `var_1`
+- Commit mutation user/USER_SET_AUTH_INFO with arg_0: `var_1`
 - Set into local storage with key "auth" and value `var_1`
 - Dispatch action user/fetchUserInfo
-- Call mutation user/USER_LOGIN_SUCCESS
+- Commit mutation user/USER_LOGIN_SUCCESS
 
 Used by:
 
@@ -174,7 +174,7 @@ Accepts 1 argument:
 
 Rough explanation:
 
-- Call mutation user/USER_LOGIN_REQUEST
+- Commit mutation user/USER_LOGIN_REQUEST
 - Let `var_0` contains this object:
   ```typescript
   {
@@ -185,9 +185,9 @@ Rough explanation:
     verified: !0,
   };
   ```
-- Call mutation user/USER_SET_AUTH_INFO with data: `var_0`
+- Commit mutation user/USER_SET_AUTH_INFO with data: `var_0`
 - Set into local storage with key "auth" and value `var_0`
-- Call mutation user/USER_LOGIN_SUCCESS
+- Commit mutation user/USER_LOGIN_SUCCESS
 
 Used by:
 
@@ -198,9 +198,9 @@ Used by:
 
 Rough explanation:
 
-- Call mutation user/USER_LOGOUT_REQUEST
+- Commit mutation user/USER_LOGOUT_REQUEST
 - Clear local storage
-- Call mutation user/USER_SET_AUTH_INFO with data:
+- Commit mutation user/USER_SET_AUTH_INFO with data:
   ```typescript
   {
     accessToken: "",
@@ -209,8 +209,8 @@ Rough explanation:
     verified: false,
   }
   ```
-- Call mutation user/USER_SET_USER_INFO with data: `{}`
-- Call mutation user/USER_LOGOUT_SUCCESS
+- Commit mutation user/USER_SET_USER_INFO with data: `{}`
+- Commit mutation user/USER_LOGOUT_SUCCESS
 
 Used by:
 
@@ -220,11 +220,11 @@ Used by:
 
 Rough explanation
 
-- Call mutation user/USER_INFO_FETCH_REQUEST
+- Commit mutation user/USER_INFO_FETCH_REQUEST
 - Fetch GET "/login/me"
 - Dispatch action lptk/fetchLptkById
-- If the task throw error, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
-- If success, call mutation user/USER_INFO_SET with data:
+- If the task throw error, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If success, commit mutation user/USER_INFO_SET with data:
   ```typescript
   // Types based on /login/me, /stats/user/*, and /public/lptk responses
   interface ISuccessReturn {
@@ -276,7 +276,7 @@ Rough explanation:
 
 - Fetch GET "/stats/user/`{{userId}}`"
 - Let `response` is a JSON parsed of the fetch response
-- Call mutation user/USER_INFO_SET with data:
+- Commit mutation user/USER_INFO_SET with data:
   ```typescript
   { ...state.userInfo, stats: response.data };
   ```
@@ -308,7 +308,7 @@ Rough explanation:
 
   where `data` is each element in the `response.data` array
 
-- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If the request or JSON parsing fails, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 
 Used by:
 
@@ -335,7 +335,7 @@ Rough explanation:
 
   where `data` is each element in the `response.data` array
 
-- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If the request or JSON parsing fails, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 
 Used by:
 
@@ -361,7 +361,7 @@ Rough explanation:
 
   where `data` is each element in the `response.data` array
 
-- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If the request or JSON parsing fails, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 
 Used by:
 
@@ -387,7 +387,7 @@ Rough explanation:
 
   where `data` is each element in the `response.data` array
 
-- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If the request or JSON parsing fails, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 
 Used by:
 
@@ -425,7 +425,7 @@ Rough explanation:
 
   where `data` is each element in the `response.data` array
 
-- If the request or JSON parsing fails, call mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
+- If the request or JSON parsing fails, commit mutation user/USER_INFO_FETCH_FAILED with data: thrown error value
 
 Used by:
 
