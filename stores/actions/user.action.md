@@ -5,7 +5,7 @@
 Rough explanation:
 
 - Get "auth" from local storage (`n`)
-- If exists, call USER_SET_AUTH_INFO with data:
+- If exists, commit mutation user/USER_SET_AUTH_INFO with data:
 
   ```typescript
   {
@@ -16,10 +16,11 @@ Rough explanation:
   }
   ```
 
+- If does not exists, remove "auth" from local storage
+
 Used by:
 
 - [web_js] app.\*.js
-- If not exists, remove "auth" from local storage
 
 ## user/checkUserInfo (async)
 
