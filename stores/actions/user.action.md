@@ -20,7 +20,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] app.\*.js
+- [web_js] app.js
 
 ## user/checkUserInfo (async)
 
@@ -30,7 +30,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] app.\*.js
+- [web_js] app.js
 
 ## user/fetchStudents (async)
 
@@ -64,9 +64,9 @@ Rough explanation:
 
 Used by:
 
-- [dispath] course/public.\*.js
-- [dispath] exam/start.\*.js
-- [dispath] survey/list-lecturer.\*.js
+- [dispath] course/public.js
+- [dispath] exam/start.js
+- [dispath] survey/list-lecturer.js
 
 ## user/fetchAccessToken (async)
 
@@ -116,8 +116,8 @@ Rough explanation:
 
 Used by:
 
-- [dispath] webhook-sso.\*.js
-- [dispath] pages/login.\*.js
+- [dispath] webhook-sso.js
+- [dispath] pages/login.js
 
 ## user/switchUser (async)
 
@@ -155,7 +155,7 @@ Rough explanation:
 
 Used by:
 
-- [dispath] main.\*.js
+- [dispath] main.js
 
 ## user/login_sso (async)
 
@@ -192,8 +192,8 @@ Rough explanation:
 
 Used by:
 
-- [web_js] webhook-sso.\*.js
-- [web_js] pages/login.\*.js
+- [web_js] webhook-sso.js
+- [web_js] pages/login.js
 
 ## user/logout (async)
 
@@ -215,7 +215,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] app.\*.js
+- [web_js] app.js
 
 ## user/fetchUserInfo (async)
 
@@ -284,8 +284,8 @@ Rough explanation:
 
 Used by:
 
-- [web_js] settings/profile-lecturer.\*.js
-- [web_js] settings/profile-student.\*.js
+- [web_js] settings/profile-lecturer.js
+- [web_js] settings/profile-student.js
 
 ## user/fetchUniversities (async)
 
@@ -313,7 +313,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] course/public.\*.js
+- [web_js] course/public.js
 
 ## user/fetchProdi (async)
 
@@ -340,7 +340,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] course/public.\*.js
+- [web_js] course/public.js
 
 ## user/fetchStudent (async)
 
@@ -366,7 +366,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] course/public.\*.js
+- [web_js] course/public.js
 
 ## user/fetchLecturerDikti (async)
 
@@ -392,7 +392,7 @@ Rough explanation:
 
 Used by:
 
-- [web_js] course/public.\*.js
+- [web_js] course/public.js
 
 ## user/postForm (async)
 
@@ -430,4 +430,4 @@ Rough explanation:
 
 Used by:
 
-- [web_js] course/public.\*.js
+- [web_js] course/public.js
