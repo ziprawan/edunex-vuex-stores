@@ -224,3 +224,65 @@ Used by:
 - [action] user/fetchUserStats
 - [action] user/fetchProdi
 - [web_js] layouts/main.js
+
+## user/USER_SET_AVATAR
+
+Accepts 1 argument:
+
+- arg_0: `string`
+
+```typescript
+state.userInfo = {
+  ...state.userInfo,
+  avatar: arg_0,
+};
+```
+
+> **_This mutation wait for 200 milliseconds before assigning the item_**
+
+Used by:
+
+- [action] user/updateUserThumbnail
+
+## user/USER_SET_NOTIFICATION_EMAIL
+
+Accepts 1 argument:
+
+- arg_0: `string`
+
+```typescript
+state.userInfo = {
+  ...state.userInfo,
+  notification_email: arg_0,
+};
+```
+
+Used by:
+
+- [action] user/updateNotifyEmail
+
+## user/USER_SET_LIST
+
+Accepts 1 argument:
+
+- arg_0: unknown
+
+```typescript
+state.list = arg_0;
+```
+
+Used by:
+
+- [action] user/fetchList
+
+## user/USER_SET_PAGINATION
+
+Accepts 1 argument:
+
+- arg_0: unknown
+
+```typescript
+state.pagination = arg_0;
+```
+
+Used by: **none**

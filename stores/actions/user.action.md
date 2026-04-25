@@ -64,9 +64,9 @@ Rough explanation:
 
 Used by:
 
-- [dispath] course/public.js
-- [dispath] exam/start.js
-- [dispath] survey/list-lecturer.js
+- [web_js] course/public.js
+- [web_js] exam/start.js
+- [web_js] survey/list-lecturer.js
 
 ## user/fetchAccessToken (async)
 
@@ -116,8 +116,8 @@ Rough explanation:
 
 Used by:
 
-- [dispath] webhook-sso.js
-- [dispath] pages/login.js
+- [web_js] webhook-sso.js
+- [web_js] pages/login.js
 
 ## user/switchUser (async)
 
@@ -155,7 +155,7 @@ Rough explanation:
 
 Used by:
 
-- [dispath] main.js
+- [web_js] main.js
 
 ## user/login_sso (async)
 
@@ -219,7 +219,7 @@ Used by:
 
 ## user/fetchUserInfo (async)
 
-Rough explanation
+Rough explanation:
 
 - Commit mutation user/USER_INFO_FETCH_REQUEST
 - Fetch GET "/login/me"
@@ -263,7 +263,7 @@ Used by:
 
 ## user/fetchUserStats (async)
 
-Accepts 2 argument(s):
+Accepts 2 arguments:
 
 - arg_0: unknown
 - arg_1:
@@ -431,3 +431,126 @@ Rough explanation:
 Used by:
 
 - [web_js] course/public.js
+
+## user/updateUserThumbnal (async)
+
+Accepts 1 argument:
+
+- arg_0: `string`
+
+Rough explanation:
+
+- Fetch PATCH /course/users/`{{state.userInfo.id}}` with data:
+
+  ```typescript
+  {
+    data: {
+      attributes: {
+        thumbnail: arg_0;
+      }
+    }
+  }
+  ```
+
+- If server responded with 401, remove "auth" from local storage and redirect into /pages/login
+- Commit mutation user/USER_SET_AVATAR with data: `arg_0`
+
+Used by:
+
+- [web_js] settings/profile-lecturer~settings/profile-student.js
+
+## user/updateNotifyEmail
+
+Accepts 1 argument:
+
+- arg_0: `string`
+
+Rough explanation:
+
+- Fetch PATCH /course/users/`{{state.userInfo.id}}` with data:
+
+  ```typescript
+  {
+    data: {
+      attributes: {
+        notification_email: arg_0;
+      }
+    }
+  }
+  ```
+
+- If server responded with 401, remove "auth" from local storage and redirect into /pages/login
+- Commit mutation user/USER_SET_NOTIFICATION_EMAIL with data: `arg_0`
+
+Used by:
+
+- [web_js] settings/profile-lecturer~settings/profile-student.js
+
+## user/fetchList
+
+Accepts 2 arguments:
+
+- arg_0: unknown
+- arg_1:
+
+  ```typescript
+  interface IArg1 {
+    filter: string;
+    sort: string;
+    include: string;
+    pagination: {
+      limit: number;
+      offset: number;
+    };
+  }
+  ```
+
+Rough explanation:
+
+- Fetch GET /course/users with these queries:
+  - filter`arg_0.filter` (`arg_0.filter` contains `=` and is not sanitized)
+  - include with value `arg_0.include` (`arg_0.include` is not sanitized)
+  - sort with value `arg_0.sort` (`arg_0.sort` is not unsanitized)
+  - page[limit] with value `arg_0.pagination.limit` if defined
+  - page[offset] with value `arg_0.pagination.offset` if defined
+- If server responded with 401, remove "auth" from local storage and redirect into /pages/login
+- Let `response` is the JSON response
+- Commit mutation user/USER_SET_LIST with data: `response.data`
+- Returns `response`
+
+Used by:
+
+- [web_js] course/edit-learning-plan-lecturer.js
+- [web_js] course/edit-lecturer.js
+- [web_js] course/learning-plan-lecturer.js
+- [web_js] message/list~message/sent.js
+- [web_js] message/detail.js
+- [web_js] message/new.js
+
+## user/fetchById
+
+Accepts 1 argument:
+
+- arg_0: `number | string`
+
+Rough explanation:
+
+- Fetch GET /course/users/`{{arg_0}}`
+- If server responded with 401, remove "auth" from local storage and redirect into /pages/login
+- Returns the JSON response
+
+Used by:
+
+- [web_js] course/learning-plan-lecturer.js
+- [web_js] message/detail.js
+
+## user/updateProfile
+
+Rough explanation:
+
+- Let `var_0` is a JSON parsed value from a local storage with key "auth"
+- Fetch GET `{{state.lptk.detail.update_url}}{{var_0.accessToken}}`
+- If server responded with 401, remove "auth" from local storage and redirect into /pages/login
+- Returns the JSON response
+
+Used by: **none**
