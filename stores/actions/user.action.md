@@ -263,19 +263,18 @@ Used by:
 
 ## user/fetchUserStats (async)
 
-Accepts 2 arguments:
+Accepts 1 arguments:
 
-- arg_0: unknown
-- arg_1:
+- arg_0:
   ```typescript
-  interface IArg1 {
+  interface IArg0 {
     userId: string;
   }
   ```
 
 Rough explanation:
 
-- Fetch GET "/stats/user/`{{userId}}`"
+- Fetch GET "/stats/user/`{{arg_0.userId}}`"
 - Let `response` is a JSON parsed of the fetch response
 - Commit mutation user/USER_INFO_SET with data:
   ```typescript
@@ -488,10 +487,9 @@ Used by:
 
 ## user/fetchList
 
-Accepts 2 arguments:
+Accepts 1 arguments:
 
-- arg_0: unknown
-- arg_1:
+- arg_0:
 
   ```typescript
   interface IArg1 {

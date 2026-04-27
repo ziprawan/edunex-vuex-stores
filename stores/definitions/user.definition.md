@@ -61,4 +61,27 @@ interface IUserState {
     offset: number;
   };
 }
+
+let state: IUserState = {
+  indicators: {
+    loggingIn: false,
+    loginState: "neutral",
+    loginFailedReason: null,
+    loggingOut: false,
+    logoutState: "neutral",
+    logoutFailedReason: null,
+    userInfo: { status: "neutral", fetching: false, reason: null },
+  },
+  badges: [{ type: "badge-king" }],
+  loginInfo: {
+    accessToken: "",
+    refreshToken: "",
+    expirationDate: null,
+    verified: false,
+  },
+  userInfo: {},
+  user: {},
+  list: [],
+  pagination: { limit: 10, offset: 0 },
+};
 ```
